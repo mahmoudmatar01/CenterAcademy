@@ -10,7 +10,7 @@ public class CourseMapperImpl implements  ICourseMapper{
         CourseEntity course=new CourseEntity();
         course.setCourseName(courseDto.getCourseName());
         course.setCourseDescription(courseDto.getCourseDescription());
-        course.setCoursePrice(courseDto.getPrice());
+        course.setCoursePrice(courseDto.getCoursePrice());
         course.setCreatedAt(courseDto.getCreatedAt());
         return course;
     }
@@ -19,7 +19,7 @@ public class CourseMapperImpl implements  ICourseMapper{
     public CourseDto courseToCourseDto(CourseEntity course) {
         CourseDto courseDto=new CourseDto();
         courseDto.setCourseDescription(course.getCourseDescription());
-        courseDto.setPrice(course.getCoursePrice());
+        courseDto.setCoursePrice(course.getCoursePrice());
         courseDto.setCreatedAt(course.getCreatedAt());
         courseDto.setCourseName(course.getCourseName());
 

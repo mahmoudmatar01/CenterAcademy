@@ -59,7 +59,7 @@ public class CourseServicesImpl implements ICourseServices{
         course.get().setCoursePrice(newCourse.getCoursePrice());
         course.get().setCourseDescription(newCourse.getCourseDescription());
         course.get().setCreatedAt(newCourse.getCreatedAt());
-        this.iCoursesRepository.save(course.get());
+        iCoursesRepository.save(course.get());
 
         CourseDto updatedCourse=this.iCourseMapper.courseToCourseDto(course.get());
         return new ResponseEntity<>(updatedCourse,HttpStatus.OK);
@@ -68,7 +68,7 @@ public class CourseServicesImpl implements ICourseServices{
     @Override
     public ResponseEntity<String> deleteCourse(Long courseId) {
         boolean isExist= this.iCoursesRepository.existsById(courseId);
-        if(isExist){
+        if(!isExist){
             throw  new NotFoundCourseException("Course Not Found");
         }
         this.iCoursesRepository.deleteById(courseId);
