@@ -4,6 +4,9 @@ import com.example.centeracademy.Dto.CourseDto;
 import com.example.centeracademy.Services.CourseServies.CourseServicesImpl;
 import com.example.centeracademy.Services.CourseServies.ICourseServices;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,13 +22,13 @@ public class CourseController {
     }
 
 
-    @GetMapping("/")
-    public ResponseEntity<List<CourseDto>>getAllCourse(){
-        return  this.iCourseServices.findALlCourses();
+    @GetMapping()
+    public ResponseEntity<Page<CourseDto>>getAllCourse(Pageable page){
+        return  new ResponseEntity<>(iCourseServices.findALlCourses(page), HttpStatus.OK);
     }
 
-    @GetMapping(path = "/{courseId}")
-    public ResponseEntity<CourseDto>getCourseById(@PathVariable Long courseId){
+    @GetMapping("/get_by_id")
+    public ResponseEntity<CourseDto>getCourseById(@RequestParam Long courseId){
         return this.iCourseServices.findCourseById(courseId);
     }
 

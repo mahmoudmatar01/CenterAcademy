@@ -6,6 +6,9 @@ import com.example.centeracademy.Mapper.CourseMapperImpl;
 import com.example.centeracademy.Mapper.ICourseMapper;
 import com.example.centeracademy.Repository.ICoursesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -24,10 +27,10 @@ public class CourseServicesImpl implements ICourseServices{
     }
 
     @Override
-    public ResponseEntity<List<CourseDto>> findALlCourses() {
-        List<CourseEntity> courseList=this.iCoursesRepository.findAll();
-        List<CourseDto>courseDtoList=courseList.stream().map(iCourseMapper::courseToCourseDto).toList();
-        return new ResponseEntity<>(courseDtoList, HttpStatus.OK);
+    public Page<CourseDto> findALlCourses(Pageable page) {
+        Page<CourseEntity> courseList=iCoursesRepository.findAll(page);
+//        List<CourseDto>courseDtoList=courseList.stream().map(iCourseMapper::courseToCourseDto).toList();
+        return courseList.map(iCourseMapper::courseToCourseDto);
     }
 
     @Override

@@ -9,7 +9,7 @@ import org.springframework.http.ResponseEntity;
 import java.util.List;
 
 public interface ICourseServices {
-   ResponseEntity<List<CourseDto>> findALlCourses();
+   Page<CourseDto> findALlCourses(Pageable page);
     ResponseEntity<CourseDto> findCourseById(Long courseId);
     ResponseEntity<CourseDto> addNewCourse(CourseDto newCourse);
     ResponseEntity<CourseDto> updateCourse(Long id,CourseDto newCourse);
