@@ -32,13 +32,14 @@ public class CourseServicesImpl implements ICourseServices{
 
     @Override
     public ResponseEntity<CourseDto> findCourseById(Long courseId) {
-      Optional<CourseEntity>course= this.iCoursesRepository.findById(courseId);
+      Optional<CourseEntity> course= this.iCoursesRepository.findById(courseId);
       if(course.isEmpty()){
           throw  new NotFoundCourseException("Course Not Found");
       }
       CourseDto courseDto=iCourseMapper.courseToCourseDto(course.get());
         return new ResponseEntity<>(courseDto,HttpStatus.OK);
     }
+
 
     @Override
     public ResponseEntity<CourseDto> addNewCourse(CourseDto newCourse) {
@@ -55,7 +56,7 @@ public class CourseServicesImpl implements ICourseServices{
             throw  new NotFoundCourseException("Course Not Found");
         }
         course.get().setCourseName(newCourse.getCourseName());
-        course.get().setCoursePrice(newCourse.getPrice());
+        course.get().setCoursePrice(newCourse.getCoursePrice());
         course.get().setCourseDescription(newCourse.getCourseDescription());
         course.get().setCreatedAt(newCourse.getCreatedAt());
         this.iCoursesRepository.save(course.get());

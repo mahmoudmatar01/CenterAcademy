@@ -1,5 +1,6 @@
 package com.example.centeracademy.Entity;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -14,19 +15,20 @@ public class CourseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "Course Id")
+    @Column(name = "courseId")
+//    @JsonProperty("courseId")
     private Long courseId;
 
-    @Column(name = "Course Name",nullable = false)
+    @Column(name = "courseName",nullable = false)
     private String courseName;
 
-    @Column(name = "Course Price")
+    @Column(name = "coursePrice")
     private double coursePrice;
 
-    @Column(name = "Course Description" )
+    @Column(name = "courseDescription" )
     private String courseDescription;
 
-    @Column(name = "Created Date",nullable = false,updatable = false)
+    @Column(name = "createdAt",nullable = false,updatable = false)
     private String createdAt;
 
 }
