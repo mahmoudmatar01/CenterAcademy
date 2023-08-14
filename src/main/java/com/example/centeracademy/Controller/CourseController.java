@@ -10,12 +10,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @RestController
 @RequestMapping(path="/api/v1/courses")
 public class CourseController {
-    private ICourseServices iCourseServices;
+    private final ICourseServices iCourseServices;
     @Autowired
     public CourseController(CourseServicesImpl iCourseServices) {
         this.iCourseServices = iCourseServices;
