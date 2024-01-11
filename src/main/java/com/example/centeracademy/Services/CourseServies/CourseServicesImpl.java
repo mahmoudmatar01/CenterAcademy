@@ -4,25 +4,24 @@ import com.example.centeracademy.Entity.CourseEntity;
 import com.example.centeracademy.Exceptions.NotFoundCourseException;
 import com.example.centeracademy.Mapper.CourseMapperImpl;
 import com.example.centeracademy.Mapper.ICourseMapper;
-import com.example.centeracademy.Repository.ICoursesRepository;
+import com.example.centeracademy.Repository.CoursesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import java.util.List;
+
 import java.util.Optional;
 
 @Service
 public class CourseServicesImpl implements ICourseServices{
 
-    private final ICoursesRepository iCoursesRepository;
+    private final CoursesRepository iCoursesRepository;
     private final ICourseMapper iCourseMapper=new CourseMapperImpl();
 
     @Autowired
-    public CourseServicesImpl(ICoursesRepository iCoursesRepository) {
+    public CourseServicesImpl(CoursesRepository iCoursesRepository) {
         this.iCoursesRepository = iCoursesRepository;
     }
 

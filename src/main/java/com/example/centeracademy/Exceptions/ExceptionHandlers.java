@@ -15,4 +15,11 @@ public class ExceptionHandlers extends ResponseEntityExceptionHandler {
         ErrorResponse errorResponse=new ErrorResponse("404",courseException.getMessage());
         return  new ResponseEntity<>(errorResponse,HttpStatus.NOT_FOUND);
     }
+    @ExceptionHandler(GlobalExceptionClass.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ResponseBody
+    public final ResponseEntity<ErrorResponse>handleCourseGlobalException(final GlobalExceptionClass courseException){
+        ErrorResponse errorResponse=new ErrorResponse(courseException.getMessage());
+        return  new ResponseEntity<>(errorResponse,HttpStatus.BAD_REQUEST);
+    }
 }
